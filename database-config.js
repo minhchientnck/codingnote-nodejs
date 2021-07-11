@@ -1,16 +1,27 @@
 const { Sequelize } = require('sequelize');
-require('dotenv').config()
+require('dotenv').config();
 
-const sequelize = new Sequelize(
-  process.env.DB_NAME || 'guidetocode',
-  process.env.DB_USER || 'root',
-  process.env.DB_PASS || '', {
-    host: process.env.DB_HOST || 'localhost',
-    dialect: process.env.DB_DIALECT || 'mysql',
-    define: {
-      timestamps: false
-    }
-  });
+const isTimeStampsDB = process.env.DB_TIMESTAMPS
+  && JSON.parse(process.env.DB_TIMESTAMPS) || false;
+
+const sequelize = new Sequelize({
+  dialect: process.env.DB_DIALECT || 'sqlite',
+  storage: process.env.DB_STORAGE,
+  define: {
+    timestamps: isTimeStampsDB,
+  },
+});
+
+// const sequelize = new Sequelize(
+//   process.env.DB_NAME || 'codingnote',
+//   process.env.DB_USER || 'root',
+//   process.env.DB_PASS || '', {
+//     host: process.env.DB_HOST || 'localhost',
+//     dialect: process.env.DB_DIALECT || 'mysql',
+//     define: {
+//       timestamps: isTimeStampsDB
+//     },
+//   });
 
 (async function () {
   try {

@@ -22,6 +22,7 @@
     "passport-local": "^1.0.0",
     "pug": "2.0.0-beta11",
     "sequelize": "^6.6.5",
+    "sqlite3": "^5.0.2",
     "xmldom": "^0.6.0"
   },
   "devDependencies": {

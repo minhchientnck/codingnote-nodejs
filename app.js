@@ -7,7 +7,6 @@ var session = require('express-session');
 var passport = require('passport');
 
 var loginRouter = require('./auth/login');
-
 var indexRouter = require('./routes/index');
 var thuthuatRouter = require('./routes/thuthuat');
 var javascriptRouter = require('./routes/javascript');
@@ -38,8 +37,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-var maxAge = +process.env.MAX_AGE_SESSION || 3600000;
-app.use(session({ secret: 'cats', cookie: { maxAge } }));
+var maxAge = +process.env.SESSION_MAXAGE || 3600000;
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  cookie: {
+    maxAge,
+  },
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 
