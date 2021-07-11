@@ -1,0 +1,25 @@
+header(id="header", class="row")
+  div(class="header-menu")
+    if userDetail
+      div(class="dropdown")
+        button(class="btn btn-link dropdown-toggle", type="button", 
+            id="dropdownMenuButton", data-toggle="dropdown", 
+            aria-haspopup="true", aria-expanded="false")
+          i(class="bi bi-person-circle") 
+          =userDetail.username
+        ul(class="dropdown-menu dropdown-menu-right", aria-labelledby="dropdownMenuButton")
+          li: a(class="dropdown-item" href="#")
+            i(class="bi bi-file-plus") 
+            | Đăng bài viết
+          li: a(class="dropdown-item" href="/logout")
+            i(class="bi bi-box-arrow-right") 
+            | Đăng xuất
+  div(class="col-md-4")
+    div(class="navbar-header")
+      a(class="nav-link", href="/")
+        div(class="logo")
+          img(class="logo", src="../images/cono.png", alt="")
+  div(class="col-sm-8")
+    form(class="input-group search-form")
+        input(id="keyword", type="text", placeholder="Nhập từ khóa ...", class="form-control", name="keyword", aria-describedby="basic-addon3")
+        span: i(class="bi bi-search")

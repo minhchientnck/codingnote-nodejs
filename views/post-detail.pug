@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  div(id="main-view" class="container-fluid")
+    include includes/header.pug
+    div(class="row")
+      include includes/navbar.pug
+      div(class="col-md-10 pd-1r pd-r-2r")
+        div(class="post-detail")
+          h2(class="post-title")=post.title
+          div(class="published-info")
+              |Ngày đăng: 
+              span #{post.createdDate}
+              |, đăng bởi: Cono
+          div(class="post-content")!=post.content
+          h2(class="post-title") Bài viết đáng quan tâm
+          ul(class="relative-posts")
+            each post in relativePosts
+              li: span: a(href=post.referenceTitle)=post.title
+          div(class="scroll-top", title="Lên đầu trang")
+            a(href="#",id="btn-scroll-top")
+              span: i(class="bi bi-arrow-up-square-fill")
+    include includes/footer.pug

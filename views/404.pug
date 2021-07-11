@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  div(id="main-view" class="container-fluid")
+    include includes/header.pug
+    div(class="row")
+      include includes/navbar.pug
+      div(class="row")
+        div(class="col-md-12 pd-1r")
+          div(class="article-post")
+            div(class="not-found")
+              h1 404
+              h5 Page Not Found
+    include includes/footer.pug

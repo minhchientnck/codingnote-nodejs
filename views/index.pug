@@ -1,0 +1,28 @@
+extends layout
+
+block content
+  div(id="main-view" class="container-fluid")
+    include includes/header.pug
+    div(class="row")
+      include includes/navbar.pug
+      div(class="col-md-10 pd-1r pd-r-2r")
+        div(class="article-post")
+          if selectedTopic
+            h3=selectedTopic.label
+          each post in posts
+            h6(class="post-item mg-b-1r")
+              div(class="defined-title")
+                span: i(class="bi bi-forward")
+                div(class="link-post-detail")
+                  span
+                    if post.topic
+                      - var path = post.topic.name + '/' + post.referenceTitle
+                      a(href=path)=post.title
+                    else
+                      - var path = '/default/' + post.referenceTitle
+                      a(href=path)=post.title
+              div(class="published-info")
+                |Ngày đăng: 
+                span #{post.createdDate}
+                |, đăng bởi: Cono
+    include includes/footer.pug

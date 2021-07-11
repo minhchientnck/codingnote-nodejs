@@ -1,0 +1,18 @@
+extends layout
+
+block content
+  div(id="main-view" class="container-fluid")
+    div(class="login-form")
+      div(class="navbar-header")
+        a(class="nav-link", href="/")
+          div(class="logo")
+            img(class="logo", src="../images/cono.png", alt="")
+      form(action="/login",method="post")
+        div(class="field input-group")
+          label Tên đăng nhập:
+          input(class="form-control", type="text", name="username")
+        div(class="field input-group")
+          label Mật khẩu:
+          input(class="form-control", type="password", name="password")
+        div(class="action")
+          input(type="submit", value="Log In")
