@@ -7,6 +7,8 @@ var session = require('express-session');
 var passport = require('passport');
 
 var loginRouter = require('./auth/login');
+var loginRouter = require('./auth/login');
+var createPostRouter = require('./admin/create-post');
 var indexRouter = require('./routes/index');
 var thuthuatRouter = require('./routes/thuthuat');
 var javascriptRouter = require('./routes/javascript');
@@ -48,6 +50,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', loginRouter);
+app.use('/', createPostRouter);
+
 app.use('/', indexRouter);
 app.use('/javascript', javascriptRouter);
 app.use('/reactjs', reactjsRouter);
