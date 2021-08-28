@@ -91,9 +91,9 @@ router.post('/delete/:postId', async function (req, res, next) {
   if(!req.isAuthenticated()) {
     res.redirect('/login');
   }
+  const postId = req.params['postId'];
   const prevPost = await postService.findOneAndTopic(postId);
   const topic = prevPost.topic;
-  const postId = req.params['postId'];
   Post.destroy({
     where: { id: postId }
   }).then(result => {
