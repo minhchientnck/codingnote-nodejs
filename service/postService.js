@@ -3,6 +3,9 @@ const Post = require('../model/post');
 const Topic = require('../model/topic');
 
 module.exports = {
+  count: async () => {
+    return await Post.count();
+  },
   findOne: async (id) => {
     return await Post.findOne({ where: { id } });
   },

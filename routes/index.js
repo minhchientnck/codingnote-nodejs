@@ -8,7 +8,7 @@ router.get('/', async function (req, res, next) {
   const userDetail = req.user;
   const topics = await topicService.findAll();
   const posts = await postService.findAll();
-  res.render('index', { topics, posts, userDetail, userDetail });
+  res.render('index', { topics, posts, userDetail });
 });
 
 module.exports = router;

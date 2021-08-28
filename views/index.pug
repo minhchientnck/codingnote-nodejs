@@ -13,6 +13,15 @@ block content
             h6(class="post-item mg-b-1r")
               div(class="defined-title")
                 span: i(class="bi bi-forward")
+                if userDetail
+                  - var updatedPath = "/admin/update?postId=" + post.id
+                  a(href=updatedPath, class="btn btn-edit")
+                    i(class="bi bi-pencil-fill")
+                  - var delPath = "/admin/delete/" + post.id
+                  form(action=delPath, method='post',
+                    onSubmit="return confirm('Confirm to delete')")
+                    button(class="btn btn-delete", type="submit")
+                      i(class="bi bi-trash")
                 div(class="link-post-detail")
                   span
                     if post.topic

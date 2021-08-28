@@ -181,6 +181,10 @@ a.nav-link {
 .post-item .defined-title {
    display: flex;
  }
+
+.post-item .defined-title .btn{
+  background-color: transparent;
+}
 .post-item .link-post-detail {
   margin-left: 8px;
 }
@@ -372,4 +376,16 @@ a.nav-link {
 .mg-l-pd-l-8 {
   margin-left: -8px;
   padding-left: 8px !important;
+}
+
+.btn-reset, .btn-cancel {
+  margin-left: 8px;
+}
+
+.btn-delete:hover {
+  color: #0056b3;
+}
+
+.btn-delete {
+  color: #007bff;
 }

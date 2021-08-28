@@ -14,6 +14,7 @@ const options = {
 const editor = CKEDITOR.replace('content', {
   width: '100%',
 });
+
 // editor.on('mode', function() {
 // 	var submitBtn = document
 // 		.querySelector('.btn-primary');

@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+  div(id="main-view" class="container-fluid")
+    include ../includes/header.pug
+    div(class="row")
+      include ../includes/navbar.pug
+      div(class="col-md-10 pd-1r pd-r-2r")
+        form(action="/admin/update", method="post")
+          label(for="title") Title
+            span *
+          div(class="form-group")
+            input(type="text", class="form-control", id="title", name="title",
+              aria-describedby="title", value=post.title,  required)
+          label(for="topic") Topic
+          div(class="form-group")
+            select(class="form-control", id="topic", name="topic",
+              aria-describedby="topic", selected=post.topicId)
+              each topic in topicOptions
+                if !topic
+                  option(value='') ---
+                else
+                  option(value=topic.id, selected=post.topicId)=topic.label
+          label(for="content") Content *      
+          div(class="form-group mb-3")
+              textarea(class="form-control", cols="30", id="content", name="content", required)
+          div(class="form-group mb-3")
+            button(type="submit", class="btn btn-primary") Submit
+            button(type="button", class="btn btn-secondary btn-reset") Reset
+            button(type="button", class="btn btn-secondary btn-cancel") Cancel
+          script(src="/javascripts/ckeditor/ckeditor.js")
+          script(src="/javascripts/ckeditor4-integrate.js")
+          script.
+            var content = !{JSON.stringify(post.content)};
+            CKEDITOR.instances['content'].setData(content, function() {
+              console.log('bind data');
+            });
+    include ../includes/footer.pug
