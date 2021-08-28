@@ -30,14 +30,14 @@ Post.init({
     type: DataTypes.TEXT,
   },
   createdDate: {
-    type: DataTypes.DATEONLY,
+    type: DataTypes.DATE,
     field: 'created_date',
     get: function () {
       return moment.utc(this.getDataValue('createdDate')).format('DD-MM-YYYY')
     }
   },
   updatedDate: {
-    type: DataTypes.DATEONLY,
+    type: DataTypes.DATE,
     field: 'updated_date',
     get: function () {
       return moment.utc(this.getDataValue('updatedDate')).format('DD-MM-YYYY')

@@ -23,12 +23,12 @@ router.post('/create', async function (req, res, next) {
   }
   const topics = await topicService.findAll();
   const posts = await postService.findAll();
-  let count = await postService.count();
-  count++;
+  let refId = await postService.max('reference_id');
+  refId++;
   Post.build({
     title: req.body.title,
-    referenceId: count,
-    referenceTitle: `${count}-${joinWord(req.body.title)}`,
+    referenceId: refId,
+    referenceTitle: `${refId}-${joinWord(req.body.title)}`,
     content: req.body.content,
     topicId: req.body.topic,
     createdDate: new Date(),
@@ -58,26 +58,50 @@ router.get('/update', async function (req, res, next) {
   res.render('admin/update-post', { topics, topicOptions, userDetail, post });
 });
 
-router.post('/update', async function (req, res, next) {
-  const userDetail = req.user;
+router.post('/update/:postId', async function (req, res, next) {
   if(!req.isAuthenticated()) {
     res.redirect('/login');
   }
-  const topics = await topicService.findAll();
-  const posts = await postService.findAll();
-  const postId = req.query.postId;
-  const count = await postService.count();
+  const postId = req.params['postId'];
+  let refId = await postService.max('reference_id');
+  const prevPost = await postService.findOneAndTopic(postId);
+  const topic = prevPost.topic;
+  const referenceTitle = `${refId}-${joinWord(req.body.title)}`;
   Post.update({
     title: req.body.title,
-    referenceTitle: `${count}-${joinWord(req.body.title)}`,
+    referenceTitle,
     content: req.body.content,
-    topicId: req.body.topic,
+    topicId: req.body.topicId,
     updatedDate: new Date(),
   }, {
     where: { id: postId }
   }).then(result => {
     console.log('Updated successfully')
-    res.render('index', { topics, posts, userDetail});
+    if(topic) {
+      res.redirect(`/${topic.name}/${referenceTitle}`)
+    }
+    res.redirect(`/${referenceTitle}`)
+  })
+  .catch(error =>
+    console.log(error)
+  );
+});
+
+router.post('/delete/:postId', async function (req, res, next) {
+  if(!req.isAuthenticated()) {
+    res.redirect('/login');
+  }
+  const prevPost = await postService.findOneAndTopic(postId);
+  const topic = prevPost.topic;
+  const postId = req.params['postId'];
+  Post.destroy({
+    where: { id: postId }
+  }).then(result => {
+    console.log('Deleted successfully');
+    if(topic) {
+      res.redirect(`/${topic.name}`)
+    }
+    res.redirect('/');
   })
   .catch(error =>
     console.log(error)

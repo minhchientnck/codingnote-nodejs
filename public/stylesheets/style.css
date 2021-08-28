@@ -367,6 +367,10 @@ a.nav-link {
     max-height: 50px;
     width: 100px;
   }
+
+  .login-form {
+    width: 100%;
+  }
 }
 
 .pd-t-16 {
@@ -388,4 +392,13 @@ a.nav-link {
 
 .btn-delete {
   color: #007bff;
+}
+
+.actions-group {
+  display: flex;
+}
+
+.actions-group .btn-edit{
+  display: block;
+  margin-right: 8px;
 }

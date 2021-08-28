@@ -3,11 +3,22 @@ const Post = require('../model/post');
 const Topic = require('../model/topic');
 
 module.exports = {
+  max: async (col) => {
+    return await Post.max(col);
+  },
   count: async () => {
     return await Post.count();
   },
   findOne: async (id) => {
     return await Post.findOne({ where: { id } });
+  },
+  findOneAndTopic: async (id) => {
+    return await Post.findOne({ 
+      where: { 
+        id 
+      }, 
+      include: Topic,
+    });
   },
   findByReferenceTitle: async (referenceTitle) => {
     return await Post.findOne({
