@@ -17,18 +17,20 @@ router.get('/create', async function (req, res, next) {
 });
 
 router.post('/create', async function (req, res, next) {
-  const userDetail = req.user;
   if(!req.isAuthenticated()) {
     res.redirect('/login');
   }
-  const topics = await topicService.findAll();
-  const posts = await postService.findAll();
   let refId = await postService.max('reference_id');
   refId++;
+  const referenceTitle = `${refId}-${joinWord(req.body.title)}`
+  let selectedTopic;
+  if (req.body.topic){
+    selectedTopic = await topicService.findById(req.body.topic);
+  }
   Post.build({
     title: req.body.title,
     referenceId: refId,
-    referenceTitle: `${refId}-${joinWord(req.body.title)}`,
+    referenceTitle,
     content: req.body.content,
     topicId: req.body.topic,
     createdDate: new Date(),
@@ -37,7 +39,10 @@ router.post('/create', async function (req, res, next) {
   .save()
   .then(function(anotherTask) {
     console.log('Saved successfully');
-    res.render('index', { topics, posts, userDetail});
+    if(req.body.topic) {
+      res.redirect(`/${selectedTopic.name}/${referenceTitle}`)
+    }
+    res.redirect(`/${referenceTitle}`)
   }).catch(function(error) {
     console.log(error);
   });
@@ -64,14 +69,14 @@ router.post('/update/:postId', async function (req, res, next) {
   }
   const postId = req.params['postId'];
   let refId = await postService.max('reference_id');
-  const prevPost = await postService.findOneAndTopic(postId);
-  const topic = prevPost.topic;
   const referenceTitle = `${refId}-${joinWord(req.body.title)}`;
+  let topicId = req.body.topic;
+  const topic = await topicService.findById(topicId);
   Post.update({
     title: req.body.title,
     referenceTitle,
     content: req.body.content,
-    topicId: req.body.topicId,
+    topicId,
     updatedDate: new Date(),
   }, {
     where: { id: postId }
