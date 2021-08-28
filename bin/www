@@ -18,17 +18,14 @@ require('dotenv').config()
 var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
-var options = {
-  key: fs.readFileSync('./ssl/codingnote.key.pem'),
-  cert: fs.readFileSync('./ssl/codingnote.crt.pem'),
-};
-
 var isSSL = process.env.SSL && JSON.parse(process.env.SSL) || false;
 var server;
+var options;
 if (isSSL) {
+  options = {
+    key: fs.readFileSync('./ssl/codingnote.key.pem'),
+	  cert: fs.readFileSync('./ssl/codingnote.crt.pem'),
+  };
   server = https.createServer(options, app);
   console.log('ssl is enable');
 } else {
