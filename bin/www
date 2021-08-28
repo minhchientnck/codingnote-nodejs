@@ -24,7 +24,7 @@ var options;
 if (isSSL) {
   options = {
     key: fs.readFileSync('./ssl/codingnote.key.pem'),
-	  cert: fs.readFileSync('./ssl/codingnote.crt.pem'),
+    cert: fs.readFileSync('./ssl/codingnote.crt.pem'),
   };
   server = https.createServer(options, app);
   console.log('ssl is enable');
