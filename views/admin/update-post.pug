@@ -6,7 +6,8 @@ block content
     div(class="row")
       include ../includes/navbar.pug
       div(class="col-md-10 pd-1r pd-r-2r")
-        form(action="/admin/update", method="post")
+        - var updatedPath = "/admin/update?postId=" + post.id
+        form(action=updateUrl, method="post")
           label(for="title") Title
             span *
           div(class="form-group")

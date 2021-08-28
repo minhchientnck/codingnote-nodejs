@@ -55,8 +55,33 @@ router.get('/update', async function (req, res, next) {
   if (postId) {
     post = await postService.findOne(postId);
   }
-  console.log(post);
   res.render('admin/update-post', { topics, topicOptions, userDetail, post });
+});
+
+router.post('/update', async function (req, res, next) {
+  const userDetail = req.user;
+  if(!req.isAuthenticated()) {
+    res.redirect('/login');
+  }
+  const topics = await topicService.findAll();
+  const posts = await postService.findAll();
+  const postId = req.query.postId;
+  const count = await postService.count();
+  Post.update({
+    title: req.body.title,
+    referenceTitle: `${count}-${joinWord(req.body.title)}`,
+    content: req.body.content,
+    topicId: req.body.topic,
+    updatedDate: new Date(),
+  }, {
+    where: { id: postId }
+  }).then(result => {
+    console.log('Updated successfully')
+    res.render('index', { topics, posts, userDetail});
+  })
+  .catch(error =>
+    console.log(error)
+  );
 });
 
 module.exports = router;
