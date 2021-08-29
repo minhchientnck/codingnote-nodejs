@@ -38,7 +38,6 @@ router.post('/uploadFile', upload.array("upload"), function (req, res, next) {
 
 router.post('/dragDropFile', upload.array("upload"), function (req, res, next) {
   const files = req.files;
-  console.log(files)
   if (!files) {
     const error = new Error('Please upload a file')
     error.httpStatusCode = 400
@@ -53,7 +52,6 @@ router.post('/dragDropFile', upload.array("upload"), function (req, res, next) {
 
 router.post('/deleteFile/:filename', function (req, res, next) {
   const filename = req.params['filename'];
-  console.log(filename)
   try {
     fs.unlinkSync(path.join(storageBase, filename))
     console.log('File is removed');

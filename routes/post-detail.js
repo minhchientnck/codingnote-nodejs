@@ -20,7 +20,6 @@ router.get('/:topic/:ref', async function (req, res, next) {
     res.render('404', { topics });
     return;
   }
-  console.log(post);
   const relativePosts = await findRelativePostAndTopic(post.id, post.topicId);
   const selectedTopic = await topicService.findByName(topicName);
   res.render('post-detail', { topics, post, relativePosts, selectedTopic, userDetail });
