@@ -37,7 +37,8 @@ body {
 
  #main-view {
   width: 90%;
-	background-image: url('/images/bg_4.png');
+	/* background-image: url('/images/bg_4.png'); */
+  background-color: white;
 	background-size: 5px;
 	min-height: 100vh;
 }

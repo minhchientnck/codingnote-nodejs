@@ -1,0 +1,33 @@
+doctype html
+html
+  head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible", content="IE=edge")
+    title Upload file
+    link(rel="stylesheet", href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css")
+    link(rel='stylesheet', href='/stylesheets/bootstrap-icons/bootstrap-icons.css')
+    link(rel='stylesheet', href='/stylesheets/uploadManager.css')
+    script(src="/javascripts/selectImage.js")
+  block content
+    div(class="container")
+      div(class="row")
+        div(class="col-sm-12", style="margin-top: 50px;")
+          div(class="panel panel-info")
+            div(class="panel-heading")
+              h3(class="panel-title") CodingNote
+            div(class="panel-body")
+              form(action="/admin/uploadFile", method="POST", enctype="multipart/form-data")
+                legend Upload file
+                div(class="form-group")
+                  label(for="")= File
+                   input(type="file", class="form-control", name="upload")
+                button(type="submit", class="btn btn-primary") Submit
+        div(class="col-sm-12 panel-files")
+          each file in uploadedfiles
+            div(class="file-item") 
+              form(action="/admin/deleteFile/"+ file.name, method="post")
+                button(class="x-circle")
+                  span
+                    i(class="bi bi-x-circle-fill")
+              a(href=file.url, class="selected-image", onclick="return false", ondblclick=`returnFileUrl('/admin/uploadedFile/${file.name}')`, target="_blank")
+               img(src=file.url)

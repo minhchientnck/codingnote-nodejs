@@ -7,8 +7,8 @@ var session = require('express-session');
 var passport = require('passport');
 
 var loginRouter = require('./auth/login');
-var loginRouter = require('./auth/login');
 var crudPostRouter = require('./admin/crud-post');
+var uploadedFileRouter = require('./admin/upload-file');
 var indexRouter = require('./routes/index');
 var thuthuatRouter = require('./routes/thuthuat');
 var javascriptRouter = require('./routes/javascript');
@@ -51,6 +51,7 @@ app.use(passport.session());
 
 app.use('/', loginRouter);
 app.use('/admin', crudPostRouter);
+app.use('/admin', uploadedFileRouter);
 
 app.use('/', indexRouter);
 app.use('/javascript', javascriptRouter);

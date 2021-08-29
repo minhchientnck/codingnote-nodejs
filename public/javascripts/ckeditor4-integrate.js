@@ -1,5 +1,6 @@
 
 const options = {
+	width: '100%',
 	removeButtons: 'Source',
 	skin: 'moono-lisa',
 	extraPlugins: [
@@ -7,13 +8,13 @@ const options = {
 				'codesnippet',
 				'link',
 		],
-	filebrowserBrowseUrl: '/ckfinder/static/ckfinder.html',
-	filebrowserUploadUrl: '/ckfinder/connector?command=QuickUpload&type=Files',
+	filebrowserUploadMethod: 'form',
+	filebrowserBrowseUrl: '/admin/files',
+	filebrowserUploadUrl: '/admin/uploadFile',
+	uploadUrl: '/admin/dragDropFile',
 };
 
-const editor = CKEDITOR.replace('content', {
-  width: '100%',
-});
+const editor = CKEDITOR.replace('content', options);
 
 // editor.on('mode', function() {
 // 	var submitBtn = document
