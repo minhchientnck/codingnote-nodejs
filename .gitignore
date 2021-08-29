@@ -35,3 +35,5 @@ yarn-error.log*
 
 # db
 codingnote.db
+
+/public/admin/uploadedFile
