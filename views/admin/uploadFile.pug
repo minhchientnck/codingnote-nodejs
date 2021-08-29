@@ -27,7 +27,7 @@ html
           div(class="row")
             each file in uploadedfiles
               div(class="col-sm-2 mb-2") 
-               figure(class="figure file-item")
+               div(class="file-item")
                   form(action="/admin/deleteFile/"+ file.name, method="post")
                     button(class="x-circle")
                       span
