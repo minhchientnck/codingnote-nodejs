@@ -313,10 +313,12 @@ a.nav-link {
   transform: translate(-50%, -30%);
 }
 
+.login-form .login-logo .nav-link,
 .login-form .navbar-header .nav-link {
   margin: 0 auto;
 }
 
+.login-form .login-logo .nav-link .logo img,
 .login-form .navbar-header .nav-link .logo img {
   max-height: 80px;
   width: 120px;
@@ -330,7 +332,7 @@ a.nav-link {
   margin-bottom: 8px;
 }
 
-.login-form form .field input{
+.login-form form .field input {
   width: 100%;
 }
 
