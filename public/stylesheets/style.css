@@ -207,6 +207,7 @@ body {
 
 .link-post-detail a, .action-groups a{
 	color: var(--secondary-color);
+  font-weight: 600;
 }
 
 img {
@@ -361,6 +362,19 @@ a.nav-link {
    line-height: inherit;
    margin-bottom: 3px;
    background-color: #dfdfdf;
+}
+
+.article-post .post-short-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 5;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.article-post .post-short-content a {
+  color: var(--secondary-color);
+  text-decoration: none;
 }
 
 .post-detail  {

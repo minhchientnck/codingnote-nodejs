@@ -10,7 +10,7 @@ block content
           if selectedTopic
             h3=selectedTopic.label
           each post in posts
-            h6(class="post-item mg-b-1r")
+            div(class="post-item")
               div(class="defined-title")
                 if userDetail
                   - var updatedPath = "/admin/update?postId=" + post.id
@@ -33,4 +33,12 @@ block content
                 |Ngày đăng: 
                 span #{post.createdDate}
                 |, đăng bởi: Cono
+            div(class="post-short-content")
+              if post.topic
+                - var path = post.topic.name + '/' + post.referenceTitle
+                a(href=path)!=post.shortContent
+              else
+                - var path = '/default/' + post.referenceTitle
+                a(href=path)!=post.shortContent
+            hr
     include includes/footer.pug

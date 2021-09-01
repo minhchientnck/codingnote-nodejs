@@ -22,6 +22,9 @@ block content
                   option(value='') ---
                 else
                   option(value=topic.id)=topic.label
+          label(for="short-content") Short Content *
+          div(class="form-group mb-3")
+              textarea(class="form-control", cols="30", id="short-content", name="shortContent", required)
           label(for="content") Content *      
           div(class="form-group mb-3")
               textarea(class="form-control", cols="30", id="content", name="content", required)

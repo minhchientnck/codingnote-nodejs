@@ -31,8 +31,9 @@ router.post('/create', async function (req, res, next) {
     title: req.body.title,
     referenceId: refId,
     referenceTitle,
+    shortContent: req.body.shortContent,
     content: req.body.content,
-    topicId: req.body.topic,
+    topicId: req.body.topic ? req.body.topic : null,
     createdDate: new Date(),
     updatedDate: null,
   })
@@ -75,17 +76,18 @@ router.post('/update/:postId', async function (req, res, next) {
   Post.update({
     title: req.body.title,
     referenceTitle,
+    shortContent: req.body.shortContent,
     content: req.body.content,
-    topicId,
+    topicId: topicId ? topicId :null,
     updatedDate: new Date(),
   }, {
-    where: { id: postId }
+    where: { id: postId }, 
   }).then(result => {
     console.log('Updated successfully')
     if(topic) {
       res.redirect(`/${topic.name}/${referenceTitle}`)
     }
-    res.redirect(`/${referenceTitle}`)
+    res.redirect(`/default/${referenceTitle}`)
   })
   .catch(error =>
     console.log(error)

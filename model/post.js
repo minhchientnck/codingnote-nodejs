@@ -26,8 +26,13 @@ Post.init({
     type: DataTypes.TEXT,
     field: 'reference_title',
   },
+  shortContent: {
+    type: DataTypes.TEXT,
+    field: 'short_content',
+  },
   content: {
     type: DataTypes.TEXT,
+    field: 'content',
   },
   createdDate: {
     type: DataTypes.DATE,
