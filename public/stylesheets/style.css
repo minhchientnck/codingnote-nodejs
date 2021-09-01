@@ -15,7 +15,7 @@
 		"Liberation Mono", "Courier New", monospace;
 	--white: #fff;
 	--backdrop-color: #525252;
-	--primary-color: #003ca8;
+	--primary-color: #090909;
 	--secondary-color: #4a4a4a;
   --selected-topic-color: #dce6f0;
 }
@@ -36,7 +36,7 @@ body {
 }
 
  #main-view {
-  width: 90%;
+  width: 70%;
 	/* background-image: url('/images/bg_4.png'); */
   background-color: white;
 	background-size: 5px;
@@ -91,18 +91,103 @@ body {
     margin-right: 15px;
     margin-top: 64px;
 }
+#header .search-form-desktop {
+  position: absolute;
+  width: 32%;
+  top: 40px;
+  right: 0;
+}
 
-#header .search-form > input[type='text']{
+#header .search-form > input[type='text'],
+#header .search-form-desktop > input[type='text']{
   height: 32px;
   border-radius: 4px;
   margin-left: 15px;
 }
 
-#header .search-form > span {
+#header .search-form > span,
+#header .search-form-desktop > span {
 	position: absolute;
   right: 10px;
   top: 5px;
   z-index: 99;
+}
+
+#header .header-menu {
+  position: relative;
+  right: unset;
+  display: flex;
+  width: 100%;
+  margin: 0 15px;
+}
+
+#header .header-menu .menu-nav {
+  width: 20%;
+  margin: auto;
+}
+
+#header .header-menu .menu-nav .side-navbar {
+  width: 100%;
+  position: absolute;
+  margin: 0;
+  background-color: #fff;
+}
+
+#header .header-menu .menu-nav .side-navbar .navbar-item {
+  width: 100%;
+}
+
+#header .header-menu .menu-nav .side-navbar .navbar-item a {
+  font-size: 16px;
+  display: block;
+  height: 32px;
+  width: auto;
+  text-transform: uppercase;
+  color: #000;
+}
+
+#header .header-menu .menu-nav > a {
+  font-size: 2em;
+  display: block;
+  height: 48px;
+  width: 48px;
+  color: #000;
+}
+
+#header .header-menu .logo-nav {
+  width: 80%;
+}
+
+#header .header-menu .logo-nav .nav-link{
+  margin: auto;
+}
+
+#header .header-menu .logo-nav img {
+  margin: 0 auto;
+  display: block;
+}
+
+#header .header-menu .search-field {
+  width: 20%;
+  margin: auto;
+  position: relative;
+}
+
+#header .header-menu .search-field .search-form {
+  position: absolute;
+}
+
+#header .header-menu .search-field .search-form-desktop {
+  display: block;
+  margin: 0;
+}
+
+#header .header-menu .search-field>a {
+  font-size: 1.5em;
+  color: black;
+  display: block;
+  width: 32px;
+  margin-left: auto;
 }
 
 #footer {
@@ -146,7 +231,22 @@ a.nav-link {
 	color: var(--secondary-color);
 }
 
-.navbar .navbar-header .navbar-nav .nav-link {
+.navbar-header {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.navbar-header .navbar-item {
+ display: inline-block;
+}
+
+.navbar-header .navbar-item .active{
+  text-decoration: underline;
+ } 
+
+.navbar-header .navbar-item .nav-link {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 14px;
@@ -179,6 +279,14 @@ a.nav-link {
 	margin-bottom: 1rem;
 }
 
+.mg-rl--15 {
+  margin: 0 -15px;
+}
+
+.mg-rl-auto {
+  margin: 0 auto;
+}
+
 .post-item .defined-title {
    display: flex;
  }
@@ -186,10 +294,7 @@ a.nav-link {
 .post-item .defined-title .btn{
   background-color: transparent;
 }
-.post-item .link-post-detail {
-  margin-left: 8px;
-}
- 
+
 .post-item .defined-title > span > i.bi-forward {
 	color: var(--primary-color);
 	background-color: #b5d4ff;
@@ -241,8 +346,8 @@ a.nav-link {
 	min-height: calc(100vh - 102px);
 }
 
-.article-post h3 {
-  background: linear-gradient(to right, #003ca8 -40%, #fff 100%);
+.article-post h3, .create-post h3 {
+  background: linear-gradient(to right, #090909 -40%, #fff 100%);
   color: #fff;
   padding: 2px 8px;
   margin-bottom: 16px;
@@ -299,9 +404,8 @@ a.nav-link {
     font-size: .8rem;
     font-style: italic;
     color: #9b9fa4;
-    margin-left: 24px;
 }
-.article-post {
+.article-post, .create-post {
   margin-top: 8px;
 }
 
@@ -325,6 +429,24 @@ a.nav-link {
 	.collapse:not(.show) {
     display: block;
   }
+  #header .header-menu .menu-nav,
+  #header .header-menu .search-field {
+    display: none;
+  }
+
+  #header .header-menu .logo-nav {
+    width: 83.33333333%;
+    margin: 0 auto;
+    position: relative;
+  } 
+  #header .header-menu .logo-nav .dropdown {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
+  #header .header-menu .header-menu {
+    display: none;
+  }
 }
 
 @media (max-width: 768px) {
@@ -342,8 +464,8 @@ a.nav-link {
 	 color: var(--primary-color);
   }
 	
-  .navbar-nav {
-    display: inline-block;
+  .navbar-header {
+    display: none;
   }
   
   .navbar-header {
@@ -354,9 +476,9 @@ a.nav-link {
     width: 32%!important;
   }
   
-  .pd-1r {
-    padding-left: 30px;
-    padding-right: 30px;
+  .pd-15 {
+    padding-left: 15px;
+    padding-right: 15px;
   }
   
   #header .search-form {
@@ -371,6 +493,9 @@ a.nav-link {
 
   .login-form {
     width: 100%;
+  }
+  .search-form-desktop, .user-menu-desktop {
+    display: none;
   }
 }
 

@@ -3,9 +3,10 @@ extends ../layout
 block content
   div(id="main-view" class="container-fluid")
     include ../includes/header.pug
+    include ../includes/navbar.pug
     div(class="row")
-      include ../includes/navbar.pug
-      div(class="col-md-10 pd-1r pd-r-2r")
+      div(class="col-md-10 mg-rl-auto create-post")
+        h3 Sửa bài viết
         - var updatedPath = "/admin/update/" + post.id
         form(action=updatedPath, method="post")
           label(for="title") Title

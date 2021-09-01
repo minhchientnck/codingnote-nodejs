@@ -3,9 +3,9 @@ extends layout
 block content
   div(id="main-view" class="container-fluid")
     include includes/header.pug
+    include includes/navbar.pug
     div(class="row")
-      include includes/navbar.pug
-      div(class="col-md-10 pd-1r pd-r-2r")
+      div(class="col-md-10 pd-15 mg-rl-auto")
         div(class="post-detail")
           h2(class="post-title")=post.title
           div(class="published-info")
@@ -19,9 +19,9 @@ block content
                   onSubmit="return confirm('Confirm to delete')")
                   button(class="btn btn-delete", type="submit")
                     i(class="bi bi-trash")
-              |Ngày đăng: 
-              span #{post.createdDate}
-              |, đăng bởi: Cono
+            |Ngày đăng: 
+            span #{post.createdDate}
+            |, đăng bởi: Cono
           div(class="post-content")!=post.content
           h2(class="post-title") Bài viết đáng quan tâm
           ul(class="relative-posts")
