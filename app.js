@@ -24,6 +24,8 @@ var djangoRouter = require('./routes/django');
 var anacondaRouter = require('./routes/anaconda');
 var webpackRouter = require('./routes/webpack');
 var cssRouter = require('./routes/css');
+var nodejsRouter = require('./routes/nodejs');
+var nginxRouter = require('./routes/nginx');
 var postDetail = require('./routes/post-detail');
 var usersRouter = require('./routes/users');
 
@@ -68,6 +70,8 @@ app.use('/webpack', webpackRouter);
 app.use('/css', cssRouter);
 app.use('/database', databaseRouter);
 app.use('/thu-thuat', thuthuatRouter);
+app.use('/nodejs', nodejsRouter);
+app.use('/nginx', nginxRouter);
 app.use('/', postDetail);
 app.use('/users', usersRouter);
 
