@@ -15,7 +15,7 @@
 		"Liberation Mono", "Courier New", monospace;
 	--white: #fff;
 	--backdrop-color: #f2f2f2;
-	--primary-color: #090909;
+	--primary-color: #17a2b8;
 	--secondary-color: #4a4a4a;
   --selected-topic-color: #dce6f0;
 }
@@ -259,7 +259,7 @@ a.nav-link {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 14px;
-	color: var(--primary-color);
+	color: #080808;
 }
 
 .navbar .navbar-header {
@@ -358,7 +358,7 @@ a.nav-link {
 }
 
 .article-post h3, .create-post h3 {
-  background: linear-gradient(to right, #090909 -40%, #fff 100%);
+  background: linear-gradient(to right, var(--primary-color) -40%, #fff 100%);
   color: #fff;
   padding: 2px 8px;
   margin-bottom: 16px;
