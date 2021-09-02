@@ -14,7 +14,7 @@
 	--font-family-monospace: Open Sans, SFMono-Regular, Menlo, Monaco, Consolas,
 		"Liberation Mono", "Courier New", monospace;
 	--white: #fff;
-	--backdrop-color: #525252;
+	--backdrop-color: #f2f2f2;
 	--primary-color: #090909;
 	--secondary-color: #4a4a4a;
   --selected-topic-color: #dce6f0;
@@ -44,7 +44,8 @@ body {
 }
 
 #header {
-   position: relative;
+  position: relative;
+  border-bottom: 1px solid #f0f0f0;
 }
 
 #header .header-menu {
@@ -158,8 +159,10 @@ body {
   width: 80%;
 }
 
-#header .header-menu .logo-nav .nav-link{
+#header .header-menu .logo-nav .home-link {
   margin: auto;
+  max-width: 210px;
+  display: block;
 }
 
 #header .header-menu .logo-nav img {
@@ -208,6 +211,7 @@ body {
 .link-post-detail a, .action-groups a{
 	color: var(--secondary-color);
   font-weight: 600;
+  font-size: 20px;
 }
 
 img {
@@ -232,22 +236,26 @@ a.nav-link {
 	color: var(--secondary-color);
 }
 
-.navbar-header {
+.desktop-navbar {
+  box-shadow: 0 5px 10px rgb(0 0 0 / 10%);
+}
+
+.desktop-navbar .navbar-header {
   list-style: none;
   margin: 0;
   padding: 0;
   margin: 0 auto;
 }
 
-.navbar-header .navbar-item {
+.desktop-navbar .navbar-header .navbar-item {
  display: inline-block;
 }
 
-.navbar-header .navbar-item .active{
+.desktop-navbar .navbar-header .navbar-item .active{
   text-decoration: underline;
  } 
 
-.navbar-header .navbar-item .nav-link {
+ .desktop-navbar .navbar-header .navbar-item .nav-link {
 	text-transform: uppercase;
 	font-weight: bold;
 	font-size: 14px;
@@ -379,6 +387,7 @@ a.nav-link {
 
 .post-detail  {
 	position: relative;
+  margin-top: 16px;
 }
 
 .post-detail ul {
@@ -422,7 +431,7 @@ a.nav-link {
     color: #9b9fa4;
 }
 .article-post, .create-post {
-  margin-top: 8px;
+  margin-top: 24px;
 }
 
 .post-detail .published-info {
@@ -462,6 +471,10 @@ a.nav-link {
   }
   #header .header-menu .header-menu {
     display: none;
+  }
+  #header .header-menu .logo-nav .home-link {
+    margin: unset;
+    margin-right: auto;
   }
 }
 
