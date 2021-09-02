@@ -1,7 +1,7 @@
 
 const options = {
 	width: '100%',
-	removeButtons: 'Source',
+	// removeButtons: 'Source',
 	skin: 'moono-lisa',
 	extraPlugins: [
 				'uploadimage',
